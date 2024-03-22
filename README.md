@@ -1,58 +1,54 @@
-# Client UI
+# Project Setup and Execution Guide
 
-A brief description of what the project is and its purpose.
+This is a simple guide to install and run the project locally.
 
-## Table of Contents
+## Prerequisites
 
-- [Overview](#overview)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [How to Use](#how-to-use)
-- [Contribution](#contribution)
-- [License](#license)
-- [Contact](#contact)
+Make sure you have Node.js and Yarn installed on your machine before proceeding.
 
-## Overview
-
-An overview of the project, explaining its main features and functionalities.
-
-## Technologies Used
-
-- List of the main technologies, frameworks, and libraries used in the project.
+- [Node.js](https://nodejs.org/) (v14.x or higher)
+- [Yarn](https://yarnpkg.com/) (v1.x)
 
 ## Installation
 
-Instructions on how to install and set up the development environment.
+1. Clone this repository to your local environment:
 
-### Prerequisites
+    ```bash
+    git clone https://github.com/your-user/your-project.git
+    ```
 
-- List of prerequisites needed to set up the development environment.
+2. Navigate to the project directory:
 
-### Local Installation
+    ```bash
+    cd your-project
+    ```
 
-1. Clone repository
-2. Run json server : yarn json-server
+3. Install project dependencies using Yarn:
 
-## How to Use
+    ```bash
+    yarn install
+    ```
 
-Explanation of how to use the project after it's been installed and configured.
+## Running the JSON Server
 
-### Development
+Before starting the development server, you need to run the JSON server to provide mock data.
 
-Instructions to run the project locally in development mode.
+1. Start the JSON server using the Yarn command:
 
-### Production
+    ```bash
+    yarn json-server --watch db.json --port 3001
+    ```
 
-Instructions to build and deploy the project to a production environment.
+    Make sure to adjust the `db.json` file according to the data needed for your project.
 
-## Contribution
+## Running the Development Server
 
-Instructions on how to contribute to the project and guidelines for submitting pull requests.
+After starting the JSON server, you can start the development server.
 
-## License
+1. Start the development server using the Yarn command:
 
-Information about the project's license.
+    ```bash
+    yarn dev
+    ```
 
-## Contact
 
-Instructions on how to get in touch with the project maintainers.

@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  react-app:
+    container_name: react-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    restart: always
+
+  json-server:
+    container_name: json-server
+    image: typicode/json-server
+    command: json-server --watch db.json --port 3001
+    volumes:
+      - ./db.json:/data/db.json
+    ports:
+      - "3001:3001"
+    restart: always
