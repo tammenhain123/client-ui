@@ -14,7 +14,7 @@ Make sure you have Node.js and Yarn installed on your machine before proceeding.
 1. Clone this repository to your local environment:
 
     ```bash
-    git clone https://github.com/your-user/your-project.git
+    git clone https://github.com/tammenhain123/client-ui
     ```
 
 2. Navigate to the project directory:
@@ -51,4 +51,14 @@ After starting the JSON server, you can start the development server.
     yarn dev
     ```
 
+## Logins and passwords
 
+When you run the system and are on the login page, you can log in with 2 users admin or user.
+
+1. Admin
+    email: admin@admin.com
+    password: admin
+
+2. User
+    email: user@user.com
+    password: user
