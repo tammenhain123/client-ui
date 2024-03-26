@@ -1,0 +1,32 @@
+.product-card {
+  max-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+}
+
+.product-details {
+  padding: 10px;
+}
+
+.product-name {
+  margin: 0;
+}
+
+.product-description {
+  margin: 5px 0;
+}
+
+.product-price {
+  margin: 5px 0;
+}
+
+.product-quantity {
+  margin: 5px 0;
+}
