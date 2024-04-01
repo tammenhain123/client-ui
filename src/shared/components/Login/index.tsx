@@ -47,7 +47,7 @@ export const Login = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh", // opcional: para ocupar a altura total da viewport
+        height: "100vh",
     }}>
       <Box
         sx={{  

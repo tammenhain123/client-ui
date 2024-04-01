@@ -20,9 +20,9 @@ async function deleteProduct(productId: string): Promise<void> {
   console.log(response)
 }
 
-async function editProduct(productId: string, updatedProduct: IProduct): Promise<IProduct> {
+async function editProductService(productId: string, updatedProduct: IProduct): Promise<IProduct> {
   const response = await Api.put(`/products/${productId}`, updatedProduct);
   return response.data;
 }
 
-export { getProducts, addNewProduct, deleteProduct, editProduct };
+export { getProducts, addNewProduct, deleteProduct, editProductService };

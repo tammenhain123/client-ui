@@ -31,7 +31,7 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children, title, showAdd
 
   const handleAddProduct = async (newProduct :IProduct) => {
     try {
-      const response = await addProduct(newProduct)
+      await addProduct(newProduct)
       setOpenAddModal(false)
     } catch (error) {
       console.error('Error', error)

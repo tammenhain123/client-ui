@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Modal, TextField, Button, Grid, Typography } from '@mui/material';
 import { IProduct } from '../ProductsTable/types';
 import { useThemeContext } from '../../context/ThemeProvider/useTheme';
-import { editProduct } from '../../services/ProductService';
 import CustomSnackbar from '../CustomSnackBar';
+import { ProductContext } from '../../context/ProductProvider';
 
 
 interface ProductModalProps {
@@ -15,6 +15,8 @@ interface ProductModalProps {
 
 const ProductModal: React.FC<ProductModalProps> = ({ selectedProduct, openModal, setOpenModal, editMode }) => {
   const appTheme = useThemeContext();
+  const { editProduct } = useContext(ProductContext);
+
   const backgroundColor = appTheme.themeName === 'dark' ? '#303134' : '#ffffff';
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -28,17 +30,15 @@ const ProductModal: React.FC<ProductModalProps> = ({ selectedProduct, openModal,
   const handleSave = async () => {
     try {
       if (editedProduct) {
-        const response = await editProduct(editedProduct.id, editedProduct);
+        await editProduct(editedProduct.id, editedProduct);
         setSnackbarMessage('Edited product');
         setSnackbarOpen(true);
         setOpenModal(false);
-        window.location.reload()
       }
     } catch (error) {
         setSnackbarMessage('Erro to edit product');
         setSnackbarOpen(true);
         setOpenModal(false);
-      // Trate o erro adequadamente, por exemplo, exibindo uma mensagem de erro para o usuário
     }
   };
 

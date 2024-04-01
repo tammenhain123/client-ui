@@ -8,4 +8,5 @@ export interface IProductContext {
   products: IProduct[];
   addProduct: (newProduct: IProduct) => void;
   removeProduct: (index: number) => void;
+  editProduct: (index: string, updatedProduct: IProduct) => void;
 }
