@@ -1,28 +1,13 @@
 import { Grid, useMediaQuery, useTheme } from "@mui/material"
 import CardComponent from "../../shared/components/Card"
 import { BaseLayout } from "../../shared/layout"
-import { useEffect, useState } from "react";
-import { IProduct } from "../../shared/components/ProductsTable/types";
-import { getProducts } from "../../shared/services/ProductService";
 import { getUserLocalStorage } from "../../shared/context/AuthProvider/util";
+import { ProductContext } from "../../shared/context/ProductProvider";
+import { useContext } from "react";
 
 export const Dashboard = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [outOfStock, setOutOfStock] = useState(0);
   const user = getUserLocalStorage()
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const productList = await getProducts();
-        const outOfStock = productList.filter(product => product.quantity === 0);
-        setOutOfStock(outOfStock.length);
-        setProducts(productList);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-    fetchProducts();
-  }, []);
+  const { products } = useContext(ProductContext);
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down("md"));
   return (
@@ -32,7 +17,7 @@ export const Dashboard = () => {
           <CardComponent backgroundColor="green" title="Total Products" value={products.length} icon="Inventory" to={{to: '/products', param: 'all'}}/>
         </Grid>
         {user.role === 'admin' && <Grid item xs={mdDown ? 12 : 4}>
-          <CardComponent backgroundColor="red" title="Out of stock" value={outOfStock} icon="ProductionQuantityLimits" to={{to: '/products', param: 'out'}}/>
+          <CardComponent backgroundColor="red" title="Out of stock" value={products.filter(product => product.quantity === 0).length} icon="ProductionQuantityLimits" to={{to: '/products', param: 'out'}}/>
         </Grid>}
       </Grid>
     </BaseLayout>

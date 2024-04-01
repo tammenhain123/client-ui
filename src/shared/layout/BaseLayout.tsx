@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Box, Divider, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { useDrawerContext } from '../context/DrawerProvider/useDrawer'
 import NewProductModal from '../components/NewProductModal'
 import { IProduct } from '../components/ProductsTable/types'
-import { addProduct } from '../services/ProductService'
 import { getUserLocalStorage } from '../context/AuthProvider/util'
+import { ProductContext } from '../context/ProductProvider'
 
 interface BaseLayoutProps {
   children: React.ReactNode
@@ -19,6 +19,7 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children, title, showAdd
   const smDown = useMediaQuery(theme.breakpoints.down("sm"))
   const mdDown = useMediaQuery(theme.breakpoints.down("md"))
   const user = getUserLocalStorage()
+  const { addProduct } = useContext(ProductContext);
 
   const drawer = useDrawerContext()
 
@@ -31,7 +32,6 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children, title, showAdd
   const handleAddProduct = async (newProduct :IProduct) => {
     try {
       const response = await addProduct(newProduct)
-      window.location.reload()
       setOpenAddModal(false)
     } catch (error) {
       console.error('Error', error)

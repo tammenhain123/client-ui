@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Table,
   TableBody,
@@ -16,10 +16,12 @@ import {
 import { Edit, Delete } from '@mui/icons-material';
 import { IProduct } from './types';
 import ProductModal from '../ProductModal';
-import { deleteProduct } from '../../services/ProductService';
 import { getUserLocalStorage } from '../../context/AuthProvider/util';
+import { ProductContext } from '../../context/ProductProvider';
 
 const ProductTable = ({ products }: { products: IProduct[] }) => {
+  const { removeProduct } = useContext(ProductContext);
+
   const user = getUserLocalStorage()
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -34,14 +36,8 @@ const ProductTable = ({ products }: { products: IProduct[] }) => {
     setPage(newPage);
   };
 
-  const handleDeleteProduct = async (index) => {
-    const productId = products[index]?.id;
-    try {
-      await deleteProduct(productId)
-      window.location.reload();
-    } catch (error) {
-      console.error('Erro ao deletar produto:', error);
-    }
+  const handleDeleteProduct = async (index: number) => {
+    removeProduct(index)
   };
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {

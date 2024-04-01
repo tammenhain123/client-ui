@@ -8,7 +8,7 @@ async function getProducts(): Promise<IProduct[]> {
   return response.data;
 }
 
-async function addProduct(product: IProduct): Promise<IProduct> {
+async function addNewProduct(product: IProduct): Promise<IProduct> {
   product.createdAt = new Date();  
   product.id = (Math.floor(Math.random() * 100000000) + 1).toString();
   const response = await Api.post('/products', product);
@@ -25,4 +25,4 @@ async function editProduct(productId: string, updatedProduct: IProduct): Promise
   return response.data;
 }
 
-export { getProducts, addProduct, deleteProduct, editProduct };
+export { getProducts, addNewProduct, deleteProduct, editProduct };

@@ -1,27 +1,15 @@
-import  { useState, useEffect } from 'react';
+import  { useContext, useState } from 'react';
 import { BaseLayout } from "../../shared/layout";
 import ProductTable from "../../shared/components/ProductsTable";
 import ProductCard from "../../shared/components/ProductCard";
 import { Box, Button, Grid } from "@mui/material";
-import { IProduct } from "../../shared/components/ProductsTable/types";
-import { getProducts } from "../../shared/services/ProductService";
+import { ProductContext } from '../../shared/context/ProductProvider';
 
 export const Products = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const { products } = useContext(ProductContext);
   const [viewMode, setViewMode] = useState<'table' | 'card'>('table');
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const productList = await getProducts();
-        setProducts(productList);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-    fetchProducts();
-  }, []);
-
+  
   const toggleViewMode = () => {
     setViewMode(viewMode === 'table' ? 'card' : 'table');
   };
