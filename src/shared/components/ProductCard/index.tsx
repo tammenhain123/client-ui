@@ -22,9 +22,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <img src={image} alt={name} className="product-image" />
       <div className="product-details">
         <Typography variant='h5' className="product-name">{name}</Typography>
-        <p className="product-description">{description}</p>
-        <p className="product-price">Price: ${value}</p>
-        <p className="product-quantity">Available Quantity: {quantity}</p>
+        <Typography className="product-description">{description}</Typography>
+        <Typography className="product-price">Price: ${value}</Typography>
+        <Typography className="product-quantity">Available Quantity: {quantity}</Typography>
       </div>
     </div>
   );
